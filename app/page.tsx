@@ -1,4 +1,6 @@
-import { ExternalLink, Phone, Mail, Shield, Award, BookOpen, MapPin, Globe } from "lucide-react";
+import { ExternalLink, Phone, Mail, Shield, MapPin } from "lucide-react";
+import FadeIn from "./components/FadeIn";
+import HeadingUnderline from "./components/HeadingUnderline";
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -7,305 +9,285 @@ const personSchema = {
   jobTitle: "Mortgage Strategist & Enrolled Agent",
   description: "Licensed mortgage broker and Enrolled Agent with 20+ years of experience in home lending and tax strategy. Founder of Innovative Home Loan and Sisu Tax & Consulting.",
   url: "https://meetjasonseibel.com",
-  sameAs: [
-    "https://innovativehomeloan.com",
-    "https://sisutax.com",
-  ],
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Portland",
-    addressRegion: "OR",
-    addressCountry: "US",
-  },
+  sameAs: ["https://innovativehomeloan.com", "https://sisutax.com"],
+  address: { "@type": "PostalAddress", addressLocality: "Portland", addressRegion: "OR", addressCountry: "US" },
   telephone: "+15037203730",
   email: "jason@innovativehomeloan.com",
   hasCredential: [
-    {
-      "@type": "EducationalOccupationalCredential",
-      name: "NMLS License #171895",
-      credentialCategory: "Mortgage Broker License",
-    },
-    {
-      "@type": "EducationalOccupationalCredential",
-      name: "Enrolled Agent",
-      credentialCategory: "IRS Authorization",
-    },
-    {
-      "@type": "EducationalOccupationalCredential",
-      name: "MBA — Technology Management",
-      credentialCategory: "Graduate Degree",
-    },
+    { "@type": "EducationalOccupationalCredential", name: "NMLS License #171895", credentialCategory: "Mortgage Broker License" },
+    { "@type": "EducationalOccupationalCredential", name: "Enrolled Agent", credentialCategory: "IRS Authorization" },
+    { "@type": "EducationalOccupationalCredential", name: "MBA — Technology Management", credentialCategory: "Graduate Degree" },
   ],
   knowsAbout: ["Mortgage Lending", "Tax Strategy", "Forensic Accounting", "Real Estate Finance", "IRS Representation"],
   knowsLanguage: ["English", "Russian"],
   award: "Five Star Professional Award",
-  numberOfEmployees: {
-    "@type": "QuantitativeValue",
-    value: 20,
-    description: "Years of experience",
-  },
 };
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
-    {
-      "@type": "Question",
-      name: "Who is Jason Seibel?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Jason Seibel is a licensed mortgage broker (NMLS #171895) and Enrolled Agent based in the Portland, Oregon area. He is the founder of Innovative Home Loan, a licensed mortgage brokerage, and Sisu Tax & Consulting, a tax advisory and accounting practice. He holds an MBA in Technology Management and has 20+ years of experience in home lending and financial services.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Is Jason Seibel a licensed mortgage broker?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. Jason Seibel holds NMLS license #171895 and is licensed to originate mortgages in 8 states. His license can be verified at the NMLS Consumer Access website at nmlsconsumeraccess.org.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What is Jason Seibel's NMLS number?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Jason Seibel's individual NMLS number is 171895. This license is publicly verifiable through the NMLS Consumer Access portal.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What is an Enrolled Agent?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "An Enrolled Agent (EA) is a federally authorized tax practitioner who has earned the right to represent taxpayers before the Internal Revenue Service. Jason Seibel holds this credential through Sisu Tax & Consulting.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Where is Jason Seibel located?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Jason Seibel is based in the Portland, Oregon area and serves clients in Oregon, Florida, and additional states. He works with clients nationwide.",
-      },
-    },
+    { "@type": "Question", name: "Who is Jason Seibel?", acceptedAnswer: { "@type": "Answer", text: "Jason Seibel is a licensed mortgage broker (NMLS #171895) and Enrolled Agent based in the Portland, Oregon area. He is the founder of Innovative Home Loan and Sisu Tax & Consulting, and holds an MBA in Technology Management with 20+ years of experience in home lending and financial services." } },
+    { "@type": "Question", name: "Is Jason Seibel a licensed mortgage broker?", acceptedAnswer: { "@type": "Answer", text: "Yes. Jason Seibel holds NMLS license #171895 and is licensed in 8 states. Verify at nmlsconsumeraccess.org." } },
+    { "@type": "Question", name: "What is Jason Seibel's NMLS number?", acceptedAnswer: { "@type": "Answer", text: "Jason Seibel's individual NMLS number is 171895." } },
+    { "@type": "Question", name: "What is an Enrolled Agent?", acceptedAnswer: { "@type": "Answer", text: "An Enrolled Agent is a federally authorized tax practitioner with the right to represent taxpayers before the IRS. Jason holds this credential through Sisu Tax & Consulting." } },
+    { "@type": "Question", name: "Where is Jason Seibel located?", acceptedAnswer: { "@type": "Answer", text: "Jason Seibel is based in the Portland, Oregon area and serves clients in Oregon, Florida, and additional states." } },
   ],
 };
+
+const credentials = [
+  { label: "NMLS #171895", sub: "Individual mortgage broker license — verifiable at nmlsconsumeraccess.org", accent: "blue" },
+  { label: "Enrolled Agent", sub: "Federally authorized to represent taxpayers before the IRS", accent: "gold" },
+  { label: "MBA", sub: "Graduate degree in Technology Management", accent: "blue" },
+  { label: "Five Star Professional", sub: "Multi-year award winner in the Portland market", accent: "gold" },
+  { label: "Licensed in 8 States", sub: "Mortgage origination license across multiple U.S. states", accent: "blue" },
+  { label: "20+ Years Experience", sub: "Home lending and financial services since the early 2000s", accent: "gold" },
+  { label: "English & Russian", sub: "Bilingual — serves English and Russian-speaking clients", accent: "blue" },
+  { label: "Forensic Accounting", sub: "Financial investigation and litigation support expertise", accent: "gold" },
+];
+
+const ihlLoans = ["Conventional Loans", "FHA & VA Loans", "Jumbo Loans", "Investment Properties", "Self-Employed Borrowers", "Complex Scenarios"];
+const sisuServices = ["Tax Planning", "Tax Preparation", "IRS Representation", "Bookkeeping", "Forensic Accounting", "Fractional CFO"];
+
+const faqs = [
+  { q: "Is Jason Seibel a licensed mortgage broker?", a: "Yes. Jason holds NMLS license #171895 and is licensed to originate mortgages in 8 states. This license is publicly verifiable at nmlsconsumeraccess.org." },
+  { q: "What states does Jason Seibel originate mortgages in?", a: "Jason is licensed in multiple states including Oregon and Florida. Contact him directly for current state availability." },
+  { q: "What is an Enrolled Agent and what does it mean for clients?", a: "An Enrolled Agent is a federally authorized tax practitioner with the right to represent taxpayers before the IRS in all matters, including audits, collections, and appeals. It is a federal credential, distinct from a state-issued CPA license." },
+  { q: "Has Jason Seibel won any professional awards?", a: "Yes. Jason is a Five Star Professional award winner, a recognition given to mortgage professionals in the Portland market based on client satisfaction and professional qualifications." },
+  { q: "Does Jason Seibel serve Russian-speaking clients?", a: "Yes. Jason is bilingual in English and Russian and works with Russian-speaking clients in both his mortgage and tax practices." },
+];
 
 export default function Page() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      {/* ── NAV ──────────────────────────────────────────────── */}
-      <header style={{ background: "var(--navy)", borderBottom: "1px solid rgba(255,255,255,0.08)", padding: "16px 0" }}>
+      {/* ── NAV ──────────────────────────────────────────────────── */}
+      <header style={{ background: "var(--navy)", borderBottom: "1px solid rgba(255,255,255,0.07)", padding: "18px 0" }}>
         <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ color: "#fff", fontWeight: 800, fontSize: "1.05rem", letterSpacing: "-0.01em" }}>
-            Jason Seibel
-          </span>
+          <span style={{ color: "#fff", fontWeight: 800, fontSize: "1.05rem", letterSpacing: "-0.01em" }}>Jason Seibel</span>
         </div>
       </header>
 
       <main>
-        {/* ── HERO ─────────────────────────────────────────────── */}
-        <section style={{ background: "linear-gradient(135deg, var(--navy) 0%, var(--navy2) 60%, #0a3060 100%)", color: "#fff", padding: "80px 0 72px", textAlign: "center" }}>
+        {/* ── HERO ─────────────────────────────────────────────────── */}
+        <section className="hero-bg" style={{ color: "#fff", padding: "96px 0 88px", textAlign: "center" }}>
           <div className="container">
-            <div className="tag" style={{ background: "rgba(0,153,214,0.2)", color: "var(--blue-bright)" }}>
-              Portland, Oregon
-            </div>
-            <h1 style={{ fontSize: "clamp(2.2rem, 5vw, 3.4rem)", fontWeight: 800, lineHeight: 1.15, marginBottom: 20, letterSpacing: "-0.02em" }}>
-              Jason Seibel
-            </h1>
-            <p style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.75)", marginBottom: 12, fontWeight: 500 }}>
-              Mortgage Strategist &amp; Tax Advisor
-            </p>
-            <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.55)", maxWidth: 560, margin: "0 auto 40px", lineHeight: 1.7 }}>
-              Licensed mortgage broker with 20+ years in home lending. Enrolled Agent authorized to practice before the IRS. Founder of two financial services practices in the Portland, OR area.
-            </p>
-            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <a href="https://innovativehomeloan.com" target="_blank" rel="noopener noreferrer" className="btn-primary">
-                Innovative Home Loan <ExternalLink size={15} />
-              </a>
-              <a href="https://sisutax.com" target="_blank" rel="noopener noreferrer" className="btn-gold">
-                Sisu Tax &amp; Consulting <ExternalLink size={15} />
-              </a>
-            </div>
+            <FadeIn delay={0}>
+              <div className="pulse-badge" style={{ marginBottom: 24 }}>
+                <span className="tag" style={{ background: "rgba(0,153,214,0.22)", color: "var(--blue-bright)" }}>
+                  Portland, Oregon
+                </span>
+              </div>
+              <h1 style={{ fontSize: "clamp(2.6rem, 6vw, 4rem)", fontWeight: 900, lineHeight: 1.1, marginBottom: 16, letterSpacing: "-0.03em" }}>
+                Jason Seibel
+              </h1>
+              <p style={{ fontSize: "1.2rem", color: "rgba(255,255,255,0.7)", marginBottom: 10, fontWeight: 500, letterSpacing: "0.02em" }}>
+                Mortgage Strategist &amp; Tax Advisor
+              </p>
+              <p style={{ fontSize: "0.95rem", color: "rgba(255,255,255,0.45)", marginBottom: 48, letterSpacing: "0.06em", fontWeight: 500 }}>
+                NMLS #171895 &nbsp;|&nbsp; Enrolled Agent &nbsp;|&nbsp; 20+ Years
+              </p>
+              <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
+                <a href="https://innovativehomeloan.com" target="_blank" rel="noopener noreferrer" className="btn-primary">
+                  Innovative Home Loan <ExternalLink size={15} />
+                </a>
+                <a href="https://sisutax.com" target="_blank" rel="noopener noreferrer" className="btn-gold">
+                  Sisu Tax &amp; Consulting <ExternalLink size={15} />
+                </a>
+              </div>
+            </FadeIn>
           </div>
         </section>
 
-        {/* ── WHO IS JASON SEIBEL ───────────────────────────── */}
+        {/* ── WHO IS JASON ─────────────────────────────────────────── */}
         <section className="section" style={{ background: "#fff", textAlign: "center" }}>
           <div className="container">
-            <div className="tag" style={{ background: "var(--blue-light)", color: "var(--blue)" }}>About</div>
-            <h2 style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)", fontWeight: 800, marginBottom: 24, color: "var(--navy)" }}>
-              Who is Jason Seibel?
-            </h2>
-            <p style={{ fontSize: "1.05rem", color: "var(--text-mid)", lineHeight: 1.85, maxWidth: 680, margin: "0 auto 20px" }}>
-              Jason Seibel is a licensed mortgage broker and federal tax practitioner based in the Portland, Oregon area. He holds NMLS license #171895 and is credentialed as an Enrolled Agent, giving him the federal authority to represent taxpayers before the IRS.
-            </p>
-            <p style={{ fontSize: "1.05rem", color: "var(--text-mid)", lineHeight: 1.85, maxWidth: 680, margin: "0 auto" }}>
-              Over more than two decades, he has worked with homebuyers, real estate professionals, small business owners, and self-employed clients across Oregon, Florida, and additional states. He holds an MBA in Technology Management and brings forensic accounting expertise to both his mortgage and tax practices.
-            </p>
+            <FadeIn>
+              <span className="tag" style={{ background: "var(--blue-light)", color: "var(--blue)" }}>About</span>
+              <HeadingUnderline>
+                <h2 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.4rem)", fontWeight: 800, color: "var(--navy)", letterSpacing: "-0.02em" }}>
+                  Who is Jason Seibel?
+                </h2>
+              </HeadingUnderline>
+            </FadeIn>
+            <FadeIn delay={120}>
+              <p style={{ fontSize: "1.05rem", color: "var(--text-mid)", lineHeight: 1.9, maxWidth: 700, margin: "0 auto 22px" }}>
+                Jason Seibel is a licensed mortgage broker and federal tax practitioner based in the Portland, Oregon area. He holds NMLS license #171895 and is credentialed as an Enrolled Agent, giving him the federal authority to represent taxpayers before the IRS.
+              </p>
+              <p style={{ fontSize: "1.05rem", color: "var(--text-mid)", lineHeight: 1.9, maxWidth: 700, margin: "0 auto" }}>
+                Over more than two decades, he has worked with homebuyers, real estate professionals, small business owners, and self-employed clients across Oregon, Florida, and additional states. He holds an MBA in Technology Management and brings forensic accounting expertise to both his mortgage and tax practices.
+              </p>
+            </FadeIn>
           </div>
         </section>
 
-        {/* ── CREDENTIALS ──────────────────────────────────────── */}
+        {/* ── CREDENTIALS ──────────────────────────────────────────── */}
         <section className="section" style={{ background: "var(--gray-bg)", textAlign: "center" }}>
           <div className="container">
-            <div className="tag" style={{ background: "var(--gold-light)", color: "var(--gold)" }}>Credentials &amp; Licenses</div>
-            <h2 style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)", fontWeight: 800, marginBottom: 48, color: "var(--navy)" }}>
-              Background and qualifications
-            </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20, textAlign: "center" }}>
-              {[
-                { icon: Shield, label: "NMLS #171895", sub: "Individual mortgage broker license — verifiable at nmlsconsumeraccess.org" },
-                { icon: Award, label: "Enrolled Agent", sub: "Federally authorized to represent taxpayers before the IRS" },
-                { icon: BookOpen, label: "MBA", sub: "Graduate degree in Technology Management" },
-                { icon: Award, label: "Five Star Professional", sub: "Multi-year award winner in the Portland market" },
-                { icon: Globe, label: "Licensed in 8 States", sub: "Mortgage origination license across multiple U.S. states" },
-                { icon: Shield, label: "20+ Years Experience", sub: "Home lending and financial services since the early 2000s" },
-                { icon: Globe, label: "English &amp; Russian", sub: "Bilingual — serves English and Russian-speaking clients" },
-                { icon: BookOpen, label: "Forensic Accounting", sub: "Financial investigation and litigation support expertise" },
-              ].map(({ icon: Icon, label, sub }) => (
-                <div key={label} className="card" style={{ textAlign: "center" }}>
-                  <div style={{ width: 44, height: 44, borderRadius: 10, background: "var(--blue-light)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
-                    <Icon size={20} color="var(--blue)" />
+            <FadeIn>
+              <span className="tag" style={{ background: "var(--gold-light)", color: "var(--gold)" }}>Credentials &amp; Licenses</span>
+              <HeadingUnderline>
+                <h2 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.4rem)", fontWeight: 800, color: "var(--navy)", letterSpacing: "-0.02em" }}>
+                  Background and qualifications
+                </h2>
+              </HeadingUnderline>
+            </FadeIn>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "center", marginTop: 40 }}>
+              {credentials.map((c, i) => (
+                <FadeIn key={c.label} delay={i * 80} style={{ flex: "0 1 calc(25% - 16px)", minWidth: 200 }}>
+                  <div
+                    className="cred-card"
+                    style={{ borderTopColor: c.accent === "gold" ? "var(--gold)" : "var(--blue)", height: "100%" }}
+                  >
+                    <p style={{ fontWeight: 800, color: "var(--navy)", marginBottom: 8, fontSize: "0.97rem" }}>{c.label}</p>
+                    <p style={{ fontSize: "0.83rem", color: "var(--text-mid)", lineHeight: 1.65 }}>{c.sub}</p>
                   </div>
-                  <p style={{ fontWeight: 700, color: "var(--navy)", marginBottom: 8, fontSize: "0.95rem" }} dangerouslySetInnerHTML={{ __html: label }} />
-                  <p style={{ fontSize: "0.85rem", color: "var(--text-mid)", lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: sub }} />
-                </div>
+                </FadeIn>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── INNOVATIVE HOME LOAN ─────────────────────────────── */}
+        {/* ── INNOVATIVE HOME LOAN ─────────────────────────────────── */}
         <section className="section" style={{ background: "#fff", textAlign: "center" }}>
           <div className="container">
-            <div className="tag" style={{ background: "var(--blue-light)", color: "var(--blue)" }}>Innovative Home Loan</div>
-            <h2 style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)", fontWeight: 800, marginBottom: 20, color: "var(--navy)" }}>
-              Mortgage lending
-            </h2>
-            <p style={{ fontSize: "1.05rem", color: "var(--text-mid)", lineHeight: 1.85, maxWidth: 640, margin: "0 auto 32px" }}>
-              Innovative Home Loan is Jason's licensed mortgage brokerage. He works with homebuyers, investors, and real estate professionals to find loan structures that fit their situation, including cases that other lenders have turned down. He offers 24-hour pre-approvals, no prepayment fees, and personal attention from start to close.
-            </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center", marginBottom: 36 }}>
-              {["Conventional Loans", "FHA & VA Loans", "Jumbo Loans", "Investment Properties", "Self-Employed Borrowers", "Complex Scenarios"].map((item) => (
-                <span key={item} style={{ background: "var(--blue-light)", color: "var(--blue)", padding: "6px 16px", borderRadius: 20, fontSize: "0.85rem", fontWeight: 600 }}>{item}</span>
-              ))}
-            </div>
-            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <a href="https://innovativehomeloan.com" target="_blank" rel="noopener noreferrer" className="btn-primary">
-                Visit Innovative Home Loan <ExternalLink size={15} />
-              </a>
-              <a href="https://nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/171895" target="_blank" rel="noopener noreferrer" className="btn-outline">
-                Verify NMLS License <Shield size={15} />
-              </a>
-            </div>
+            <FadeIn>
+              <span className="tag" style={{ background: "var(--blue-light)", color: "var(--blue)" }}>Innovative Home Loan</span>
+              <HeadingUnderline>
+                <h2 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.4rem)", fontWeight: 800, color: "var(--navy)", letterSpacing: "-0.02em" }}>
+                  Mortgage lending
+                </h2>
+              </HeadingUnderline>
+            </FadeIn>
+            <FadeIn delay={100}>
+              <p style={{ fontSize: "1.05rem", color: "var(--text-mid)", lineHeight: 1.9, maxWidth: 660, margin: "0 auto 36px" }}>
+                Innovative Home Loan is Jason's licensed mortgage brokerage. He works with homebuyers, investors, and real estate professionals to find loan structures that fit their situation, including cases that other lenders have turned down. He offers 24-hour pre-approvals, no prepayment fees, and personal attention from start to close.
+              </p>
+            </FadeIn>
+            <FadeIn delay={160}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center", marginBottom: 40 }}>
+                {ihlLoans.map((item) => (
+                  <span key={item} className="pill" style={{ background: "var(--blue-light)", color: "var(--blue)" }}>{item}</span>
+                ))}
+              </div>
+              <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
+                <a href="https://innovativehomeloan.com" target="_blank" rel="noopener noreferrer" className="btn-primary">
+                  Visit Innovative Home Loan <ExternalLink size={15} />
+                </a>
+                <a href="https://nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/171895" target="_blank" rel="noopener noreferrer" className="btn-outline">
+                  Verify NMLS License <Shield size={15} />
+                </a>
+              </div>
+            </FadeIn>
           </div>
         </section>
 
-        {/* ── SISU TAX ─────────────────────────────────────────── */}
-        <section className="section" style={{ background: "linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%)", textAlign: "center" }}>
+        {/* ── SISU TAX ─────────────────────────────────────────────── */}
+        <section className="section hero-bg" style={{ textAlign: "center", color: "#fff" }}>
           <div className="container">
-            <div className="tag" style={{ background: "rgba(184,146,44,0.2)", color: "#e8b84b" }}>Sisu Tax &amp; Consulting</div>
-            <h2 style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)", fontWeight: 800, marginBottom: 20, color: "#fff" }}>
-              Tax strategy and advisory
-            </h2>
-            <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.85, maxWidth: 640, margin: "0 auto 32px" }}>
-              Sisu Tax & Consulting handles tax planning, IRS representation, bookkeeping, and business advisory for individuals, business owners, and professional practices across Oregon, Florida, and beyond. As an Enrolled Agent, Jason has the federal authority to represent clients directly before the IRS.
-            </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center", marginBottom: 36 }}>
-              {["Tax Planning", "Tax Preparation", "IRS Representation", "Bookkeeping", "Forensic Accounting", "Fractional CFO"].map((item) => (
-                <span key={item} style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.85)", padding: "6px 16px", borderRadius: 20, fontSize: "0.85rem", fontWeight: 600 }}>{item}</span>
-              ))}
-            </div>
-            <a href="https://sisutax.com" target="_blank" rel="noopener noreferrer" className="btn-gold">
-              Visit Sisu Tax &amp; Consulting <ExternalLink size={15} />
-            </a>
+            <FadeIn>
+              <span className="tag" style={{ background: "rgba(184,146,44,0.22)", color: "#e8b84b" }}>Sisu Tax &amp; Consulting</span>
+              <h2 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.4rem)", fontWeight: 800, marginBottom: 10, letterSpacing: "-0.02em" }}>
+                Tax strategy and advisory
+              </h2>
+              <div style={{ width: 48, height: 3, background: "linear-gradient(90deg, var(--blue-bright), var(--gold))", borderRadius: 2, margin: "0 auto 32px" }} />
+            </FadeIn>
+            <FadeIn delay={100}>
+              <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.9, maxWidth: 660, margin: "0 auto 36px" }}>
+                Sisu Tax & Consulting handles tax planning, IRS representation, bookkeeping, and business advisory for individuals, business owners, and professional practices. As an Enrolled Agent, Jason has the federal authority to represent clients directly before the IRS.
+              </p>
+            </FadeIn>
+            <FadeIn delay={160}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center", marginBottom: 40 }}>
+                {sisuServices.map((item) => (
+                  <span key={item} className="pill" style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.85)" }}>{item}</span>
+                ))}
+              </div>
+              <a href="https://sisutax.com" target="_blank" rel="noopener noreferrer" className="btn-gold">
+                Visit Sisu Tax &amp; Consulting <ExternalLink size={15} />
+              </a>
+            </FadeIn>
           </div>
         </section>
 
-        {/* ── FAQ ──────────────────────────────────────────────── */}
+        {/* ── FAQ ──────────────────────────────────────────────────── */}
         <section className="section" style={{ background: "var(--gray-bg)", textAlign: "center" }}>
           <div className="container">
-            <div className="tag" style={{ background: "var(--blue-light)", color: "var(--blue)" }}>Frequently Asked</div>
-            <h2 style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)", fontWeight: 800, marginBottom: 48, color: "var(--navy)" }}>
-              Common questions
-            </h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 700, margin: "0 auto", textAlign: "left" }}>
-              {[
-                { q: "Is Jason Seibel a licensed mortgage broker?", a: "Yes. Jason holds NMLS license #171895 and is licensed to originate mortgages in 8 states. This license is publicly verifiable at nmlsconsumeraccess.org." },
-                { q: "What states does Jason Seibel originate mortgages in?", a: "Jason is licensed in multiple states including Oregon and Florida. Contact him directly for current state availability, as licensing can change." },
-                { q: "What is an Enrolled Agent and what does it mean for clients?", a: "An Enrolled Agent is a federally authorized tax practitioner with the right to represent taxpayers before the IRS in all matters, including audits, collections, and appeals. It is a federal credential, distinct from a state-issued CPA license." },
-                { q: "Has Jason Seibel won any professional awards?", a: "Yes. Jason is a Five Star Professional award winner, a recognition given to mortgage professionals in the Portland market based on client satisfaction and professional qualifications." },
-                { q: "Does Jason Seibel serve Russian-speaking clients?", a: "Yes. Jason is bilingual in English and Russian and works with Russian-speaking clients in both his mortgage and tax practices." },
-              ].map(({ q, a }) => (
-                <div key={q} style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: 10, padding: "24px 28px" }}>
-                  <p style={{ fontWeight: 700, color: "var(--navy)", marginBottom: 10, fontSize: "1rem" }}>{q}</p>
-                  <p style={{ color: "var(--text-mid)", fontSize: "0.95rem", lineHeight: 1.75 }}>{a}</p>
-                </div>
+            <FadeIn>
+              <span className="tag" style={{ background: "var(--blue-light)", color: "var(--blue)" }}>Frequently Asked</span>
+              <HeadingUnderline>
+                <h2 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.4rem)", fontWeight: 800, color: "var(--navy)", letterSpacing: "-0.02em" }}>
+                  Common questions
+                </h2>
+              </HeadingUnderline>
+            </FadeIn>
+            <div style={{ display: "flex", flexDirection: "column", gap: 14, maxWidth: 720, margin: "40px auto 0" }}>
+              {faqs.map((faq, i) => (
+                <FadeIn key={faq.q} delay={i * 80}>
+                  <div className="faq-card">
+                    <p style={{ fontWeight: 700, color: "var(--navy)", marginBottom: 10, fontSize: "1rem" }}>{faq.q}</p>
+                    <p style={{ color: "var(--text-mid)", fontSize: "0.95rem", lineHeight: 1.8 }}>{faq.a}</p>
+                  </div>
+                </FadeIn>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── CONTACT / VERIFY ─────────────────────────────────── */}
+        {/* ── CONTACT ──────────────────────────────────────────────── */}
         <section className="section" style={{ background: "#fff", textAlign: "center" }}>
           <div className="container">
-            <div className="tag" style={{ background: "var(--gold-light)", color: "var(--gold)" }}>Contact &amp; Verify</div>
-            <h2 style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)", fontWeight: 800, marginBottom: 16, color: "var(--navy)" }}>
-              Get in touch or verify credentials
-            </h2>
-            <p style={{ color: "var(--text-mid)", marginBottom: 40, maxWidth: 500, margin: "0 auto 40px", lineHeight: 1.75 }}>
-              Reach Jason directly or verify his professional licenses through official public registries.
-            </p>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20, maxWidth: 720, margin: "0 auto 40px" }}>
-              <a href="tel:5037203730" className="card" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10, cursor: "pointer", textDecoration: "none" }}>
-                <Phone size={22} color="var(--blue)" />
-                <span style={{ fontWeight: 700, color: "var(--navy)", fontSize: "0.95rem" }}>(503) 720-3730</span>
-                <span style={{ fontSize: "0.82rem", color: "var(--text-light)" }}>Call or text</span>
-              </a>
-              <a href="mailto:jason@innovativehomeloan.com" className="card" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10, cursor: "pointer", textDecoration: "none" }}>
-                <Mail size={22} color="var(--blue)" />
-                <span style={{ fontWeight: 700, color: "var(--navy)", fontSize: "0.95rem" }}>Email Jason</span>
-                <span style={{ fontSize: "0.82rem", color: "var(--text-light)" }}>jason@innovativehomeloan.com</span>
-              </a>
-              <a href="https://nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/171895" target="_blank" rel="noopener noreferrer" className="card" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10, cursor: "pointer", textDecoration: "none" }}>
-                <Shield size={22} color="var(--blue)" />
-                <span style={{ fontWeight: 700, color: "var(--navy)", fontSize: "0.95rem" }}>Verify NMLS License</span>
-                <span style={{ fontSize: "0.82rem", color: "var(--text-light)" }}>NMLS #171895 — official registry</span>
-              </a>
-              <a href="https://maps.google.com/?q=Portland,OR" target="_blank" rel="noopener noreferrer" className="card" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10, cursor: "pointer", textDecoration: "none" }}>
-                <MapPin size={22} color="var(--blue)" />
-                <span style={{ fontWeight: 700, color: "var(--navy)", fontSize: "0.95rem" }}>Portland, Oregon</span>
-                <span style={{ fontSize: "0.82rem", color: "var(--text-light)" }}>Serving clients in OR, FL &amp; more</span>
-              </a>
+            <FadeIn>
+              <span className="tag" style={{ background: "var(--gold-light)", color: "var(--gold)" }}>Contact &amp; Verify</span>
+              <HeadingUnderline>
+                <h2 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.4rem)", fontWeight: 800, color: "var(--navy)", letterSpacing: "-0.02em" }}>
+                  Get in touch or verify credentials
+                </h2>
+              </HeadingUnderline>
+              <p style={{ color: "var(--text-mid)", maxWidth: 500, margin: "0 auto 48px", lineHeight: 1.8 }}>
+                Reach Jason directly or verify his professional licenses through official public registries.
+              </p>
+            </FadeIn>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 18, justifyContent: "center", maxWidth: 760, margin: "0 auto" }}>
+              {[
+                { href: "tel:5037203730", label: "(503) 720-3730", sub: "Call or text", icon: Phone },
+                { href: "mailto:jason@innovativehomeloan.com", label: "Email Jason", sub: "jason@innovativehomeloan.com", icon: Mail },
+                { href: "https://nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/171895", label: "Verify NMLS License", sub: "NMLS #171895 — official registry", icon: Shield, external: true },
+                { href: "https://maps.google.com/?q=Portland,OR", label: "Portland, Oregon", sub: "Serving OR, FL & more", icon: MapPin, external: true },
+              ].map(({ href, label, sub, icon: Icon, external }, i) => (
+                <FadeIn key={label} delay={i * 80} style={{ flex: "0 1 calc(50% - 18px)", minWidth: 240 }}>
+                  <a
+                    href={href}
+                    className="contact-card"
+                    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  >
+                    <div style={{ width: 46, height: 46, borderRadius: 10, background: "var(--blue-light)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <Icon size={20} color="var(--blue)" />
+                    </div>
+                    <span style={{ fontWeight: 700, color: "var(--navy)", fontSize: "0.97rem" }}>{label}</span>
+                    <span style={{ fontSize: "0.82rem", color: "var(--text-light)" }}>{sub}</span>
+                  </a>
+                </FadeIn>
+              ))}
             </div>
           </div>
         </section>
       </main>
 
       {/* ── FOOTER ───────────────────────────────────────────────── */}
-      <footer style={{ background: "var(--navy)", color: "rgba(255,255,255,0.55)", padding: "40px 0", textAlign: "center" }}>
+      <footer style={{ background: "var(--navy)", color: "rgba(255,255,255,0.5)", padding: "44px 0", textAlign: "center" }}>
         <div className="container">
-          <p style={{ fontWeight: 700, color: "#fff", marginBottom: 8, fontSize: "1rem" }}>Jason Seibel</p>
-          <p style={{ fontSize: "0.85rem", marginBottom: 16 }}>NMLS #171895 | Enrolled Agent | Portland, Oregon</p>
-          <div style={{ display: "flex", gap: 24, justifyContent: "center", flexWrap: "wrap", marginBottom: 24, fontSize: "0.85rem" }}>
-            <a href="https://innovativehomeloan.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--blue-bright)" }}>Innovative Home Loan</a>
-            <a href="https://sisutax.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--gold)" }}>Sisu Tax &amp; Consulting</a>
-            <a href="https://nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/171895" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.55)" }}>Verify License</a>
+          <p style={{ fontWeight: 800, color: "#fff", marginBottom: 6, fontSize: "1.05rem" }}>Jason Seibel</p>
+          <p style={{ fontSize: "0.85rem", marginBottom: 20, color: "rgba(255,255,255,0.6)" }}>NMLS #171895 &nbsp;|&nbsp; Enrolled Agent &nbsp;|&nbsp; Portland, Oregon</p>
+          <div style={{ display: "flex", gap: 28, justifyContent: "center", flexWrap: "wrap", marginBottom: 24, fontSize: "0.85rem" }}>
+            <a href="https://innovativehomeloan.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--blue-bright)", transition: "color 0.2s" }}>Innovative Home Loan</a>
+            <a href="https://sisutax.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--gold)", transition: "color 0.2s" }}>Sisu Tax &amp; Consulting</a>
+            <a href="https://nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/171895" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.45)" }}>Verify License</a>
           </div>
-          <p style={{ fontSize: "0.78rem" }}>
-            Innovative Home Loan, LLC | Equal Housing Lender | NMLS #1838984<br />
+          <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.35)", lineHeight: 1.7 }}>
+            Innovative Home Loan, LLC &nbsp;|&nbsp; Equal Housing Lender &nbsp;|&nbsp; NMLS #1838984<br />
             Mortgage services subject to state licensing requirements. This website does not constitute financial or tax advice.
           </p>
         </div>
