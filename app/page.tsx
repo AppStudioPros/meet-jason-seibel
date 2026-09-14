@@ -1,4 +1,5 @@
 import { ExternalLink, Phone, Mail, Shield, MapPin } from "lucide-react";
+import Image from "next/image";
 import FadeIn from "./components/FadeIn";
 import HeadingUnderline from "./components/HeadingUnderline";
 
@@ -72,32 +73,54 @@ export default function Page() {
 
       <main>
         {/* ── HERO ─────────────────────────────────────────────────── */}
-        <section className="hero-bg" style={{ color: "#fff", padding: "96px 0 88px", textAlign: "center" }}>
+        <section className="hero-bg" style={{ color: "#fff", padding: "88px 0 80px" }}>
           <div className="container">
-            <FadeIn delay={0}>
-              <div className="pulse-badge" style={{ marginBottom: 24 }}>
-                <span className="tag" style={{ background: "rgba(0,153,214,0.22)", color: "var(--blue-bright)" }}>
-                  Portland, Oregon
-                </span>
-              </div>
-              <h1 style={{ fontSize: "clamp(2.6rem, 6vw, 4rem)", fontWeight: 900, lineHeight: 1.1, marginBottom: 16, letterSpacing: "-0.03em" }}>
-                Jason Seibel
-              </h1>
-              <p style={{ fontSize: "1.2rem", color: "rgba(255,255,255,0.7)", marginBottom: 10, fontWeight: 500, letterSpacing: "0.02em" }}>
-                Mortgage Strategist &amp; Tax Advisor
-              </p>
-              <p style={{ fontSize: "0.95rem", color: "rgba(255,255,255,0.45)", marginBottom: 48, letterSpacing: "0.06em", fontWeight: 500 }}>
-                NMLS #171895 &nbsp;|&nbsp; Enrolled Agent &nbsp;|&nbsp; 20+ Years
-              </p>
-              <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-                <a href="https://innovativehomeloan.com" target="_blank" rel="noopener noreferrer" className="btn-primary">
-                  Innovative Home Loan <ExternalLink size={15} />
-                </a>
-                <a href="https://sisutax.com" target="_blank" rel="noopener noreferrer" className="btn-gold">
-                  Sisu Tax &amp; Consulting <ExternalLink size={15} />
-                </a>
-              </div>
-            </FadeIn>
+            <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "56px", alignItems: "center" }}>
+              <FadeIn delay={0} style={{ textAlign: "left" }}>
+                <div className="pulse-badge" style={{ marginBottom: 24 }}>
+                  <span className="tag" style={{ background: "rgba(0,153,214,0.22)", color: "var(--blue-bright)" }}>
+                    Portland, Oregon
+                  </span>
+                </div>
+                <h1 style={{ fontSize: "clamp(2.6rem, 5vw, 3.8rem)", fontWeight: 900, lineHeight: 1.1, marginBottom: 16, letterSpacing: "-0.03em" }}>
+                  Jason Seibel
+                </h1>
+                <p style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.7)", marginBottom: 10, fontWeight: 500 }}>
+                  Mortgage Strategist &amp; Tax Advisor
+                </p>
+                <p style={{ fontSize: "0.88rem", color: "rgba(255,255,255,0.45)", marginBottom: 44, letterSpacing: "0.06em", fontWeight: 500 }}>
+                  NMLS #171895 &nbsp;|&nbsp; Enrolled Agent &nbsp;|&nbsp; 20+ Years
+                </p>
+                <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+                  <a href="https://innovativehomeloan.com" target="_blank" rel="noopener noreferrer" className="btn-primary">
+                    Innovative Home Loan <ExternalLink size={15} />
+                  </a>
+                  <a href="https://sisutax.com" target="_blank" rel="noopener noreferrer" className="btn-gold">
+                    Sisu Tax &amp; Consulting <ExternalLink size={15} />
+                  </a>
+                </div>
+              </FadeIn>
+              <FadeIn delay={150} direction="none">
+                <div style={{
+                  width: 220,
+                  height: 220,
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  border: "4px solid rgba(255,255,255,0.15)",
+                  boxShadow: "0 0 0 8px rgba(0,153,214,0.15), 0 24px 60px rgba(0,0,0,0.35)",
+                  flexShrink: 0,
+                }}>
+                  <Image
+                    src="/jason-seibel.jpg"
+                    alt="Jason Seibel — Mortgage Strategist and Tax Advisor"
+                    width={220}
+                    height={220}
+                    style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                    priority
+                  />
+                </div>
+              </FadeIn>
+            </div>
           </div>
         </section>
 
